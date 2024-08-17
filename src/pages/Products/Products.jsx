@@ -24,7 +24,7 @@ const Products = () => {
     const fetchProducts = async () => {
       setLoading(true)
       try {
-        const response = await axios.get(`http://localhost:5000/products`, {
+        const response = await axios.get(`${import.meta.env.VITE_API_URL}/products`, {
           params: {
             page: currentPage,
             size: itemPerPage,
@@ -50,7 +50,7 @@ const Products = () => {
   useEffect(() => {
     const fetchProductCount = async () => {
       try {
-        const response = await axios.get(`http://localhost:5000/products/count`, {
+        const response = await axios.get(`${import.meta.env.VITE_API_URL}/products/count`, {
           params: {
             page: currentPage,
             size: itemPerPage,
@@ -75,7 +75,7 @@ const Products = () => {
   useEffect(() => {
     const fetchProductProp = async () => {
       try {
-        const response = await axios.get(`http://localhost:5000/products/property`, {
+        const response = await axios.get(`${import.meta.env.VITE_API_URL}/products/property`, {
           params: {
             search: searchTerm,
             brand: brand,
