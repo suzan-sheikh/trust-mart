@@ -23,11 +23,6 @@ function Navbar() {
 
         {/* Search Bar */}
         <div className="hidden md:flex flex-grow mx-4">
-          <select className="px-4 py-2 rounded-md border rounded-r-none border-gray-300 focus:outline-none focus:border-blue-500">
-            <option value="tshirt">T-shirt</option>
-            <option value="pant">Pant</option>
-            <option value="suit">Suit</option>
-          </select>
           <input
             type="text"
             onChange={(e) => setSearchTerm(e.target.value)}

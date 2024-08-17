@@ -40,7 +40,7 @@ const Signup = () => {
     <div className="w-full max-w-sm p-6 my-16 m-auto bg-white rounded-lg shadow-md">
       <div className="flex justify-center">
         <Link to="/">
-          <img className="w-24 rounded-lg h-24" src="/src/assets/3.png" alt="" />
+          <img className="w-24 rounded-lg h-24" src="/3.png" alt="" />
         </Link>
       </div>
 
@@ -89,28 +89,14 @@ const Signup = () => {
       {registrationError && <p className="text-red-500">{registrationError}</p>}
       {profileUpdateError && <p className="text-red-500">{profileUpdateError}</p>}
 
-      <div className="flex items-center justify-between mt-4">
-        <span className="w-1/5 border-b lg:w-1/5"></span>
-        <a href="#" className="text-xs text-center text-gray-500 uppercase hover:underline">
-          or login with Social Media
-        </a>
-        <span className="w-1/5 border-b lg:w-1/5"></span>
-      </div>
+      
 
-      <div className="flex items-center mt-6 -mx-2">
-        <button
-          type="button"
-          className="flex items-center justify-center w-full px-6 py-2 mx-2 text-sm font-medium text-white bg-blue-500 rounded-lg hover:bg-blue-400 focus:bg-blue-400 focus:outline-none"
-        >
-          <FaGoogle className="w-4 h-4 mx-2" />
-          <span className="hidden mx-2 sm:inline">Sign in with Google</span>
-        </button>
-      </div>
+     
 
       <p className="mt-8 text-xs font-light text-center text-gray-400">
-        Don't have an account?{" "}
-        <Link to="/signup" className="font-medium text-gray-700 hover:underline">
-          Create One
+        Already have an account?{" "}
+        <Link to="/login" className="font-medium text-gray-700 hover:underline">
+          Sigin
         </Link>
       </p>
     </div>
