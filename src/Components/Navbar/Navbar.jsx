@@ -6,7 +6,7 @@ function Navbar() {
   const { user, logout } = useContext(authContex);
   const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState("");
-  console.log(searchTerm);
+
   useEffect(() => {
     navigate(`/products?search=${searchTerm}`);
   }, [searchTerm]);
@@ -61,9 +61,9 @@ function Navbar() {
       {/* Mobile View */}
       <div className="md:hidden flex justify-between items-center mt-4">
         <select className="px-4 py-2 rounded-md rounded-r-none border border-gray-300 focus:outline-none focus:border-blue-500">
-          <option value="tshirt">T-shirt</option>
-          <option value="pant">Pant</option>
-          <option value="suit">Suit</option>
+          <option value="tshirt">Mobile</option>
+          <option value="pant">Laptop</option>
+          <option value="suit">Tablet</option>
         </select>
         <input
           type="text"
