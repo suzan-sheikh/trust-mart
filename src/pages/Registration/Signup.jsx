@@ -40,7 +40,7 @@ const Signup = () => {
     <div className="w-full max-w-sm p-6 my-16 m-auto bg-white rounded-lg shadow-md">
       <div className="flex justify-center">
         <Link to="/">
-          <img className="w-24 rounded-lg h-24" src="/3.png" alt="" />
+          <img className="w-24 rounded-lg h-24" src="/src/assets/2.png" alt="" />
         </Link>
       </div>
 

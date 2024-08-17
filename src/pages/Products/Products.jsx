@@ -24,7 +24,7 @@ const Products = () => {
     const fetchProducts = async () => {
       setLoading(true)
       try {
-        const response = await axios.get(`https://trendmart-server.vercel.app/products`, {
+        const response = await axios.get(`http://localhost:5000/products`, {
           params: {
             page: currentPage,
             size: itemPerPage,
@@ -50,7 +50,7 @@ const Products = () => {
   useEffect(() => {
     const fetchProductCount = async () => {
       try {
-        const response = await axios.get(`https://trendmart-server.vercel.app/products/count`, {
+        const response = await axios.get(`http://localhost:5000/products/count`, {
           params: {
             page: currentPage,
             size: itemPerPage,
@@ -75,7 +75,7 @@ const Products = () => {
   useEffect(() => {
     const fetchProductProp = async () => {
       try {
-        const response = await axios.get(`https://trendmart-server.vercel.app/products/property`, {
+        const response = await axios.get(`http://localhost:5000/products/property`, {
           params: {
             search: searchTerm,
             brand: brand,
@@ -120,7 +120,7 @@ const Products = () => {
                     <select
                       value={brand}
                       onChange={(e) => setBrand(e.target.value)}
-                      className="px-4 py-2 rounded-md border w-full border-gray-300 focus:outline-none focus:border-blue-500"
+                      className="px-4 py-2 rounded-md border w-full border-gray-300 focus:outline-none focus:border-blue-500 cursor-pointer"
                     >
                       <option value="">All Brands</option>
                       {Array.from(new Set(productProp.map(product => product.brand))).map((cat, index) => (
@@ -133,7 +133,7 @@ const Products = () => {
                     <select
                       value={category}
                       onChange={(e) => setCategory(e.target.value)}
-                      className="px-4 py-2 rounded-md border w-full border-gray-300 focus:outline-none focus:border-blue-500"
+                      className="px-4 py-2 rounded-md border w-full border-gray-300 focus:outline-none focus:border-blue-500 cursor-pointer"
                     >
                       <option value="">All Categories</option>
                       {Array.from(new Set(productProp.map(product => product.category))).map((cat, index) => (
@@ -199,11 +199,11 @@ const Products = () => {
             <div>
               <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-6">
                 {products.map((product, index) => (
-                  <div key={index} className="bg-white rounded-lg shadow-lg overflow-hidden transform transition-all hover:scale-105 hover:shadow-2xl">
+                  <div key={index} className="bg-white rounded-lg shadow-lg overflow-hidden transform transition-all hover:scale-105 hover:shadow-2xl cursor-pointer ">
                     <img
                       src={product.image}
                       alt={product.name}
-                      className="w-full h-48 object-cover"
+                      className="w-full h-48"
                     />
                     <div className="p-6">
                       <h3 className="text-lg font-bold text-gray-800 mb-2">{product.name}</h3>
