@@ -1,13 +1,56 @@
 import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+import { GrLinkNext } from "react-icons/gr";
+import { GrLinkPrevious } from "react-icons/gr";
+import { useLocation } from 'react-router-dom';
 
 const Products = () => {
   const [products, setProducts] = useState([]);
+  const [itemPerPage, setItemPerPage] = useState(6);
+  const [currentPage, setCurrentPage] = useState(0);
+  const [productCount,setProductCount]= useState(0)
+  const location = useLocation();
+  const query = new URLSearchParams(location.search);
+  const searchTerm = query.get("search") || '';
+  console.log(searchTerm);
+    useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const response = await axios.get(`http://localhost:5000/products?page=${currentPage}&size=${itemPerPage}`);
+        setProducts(response.data); 
+      } catch (error) {
+        console.error("Error fetching products:", error);
+      }
+    };
 
-  useEffect(() => {
-    fetch("http://localhost:5000/products")
-      .then(res => res.json())
-      .then(data => setProducts(data));
+    fetchProducts();
+  }, [itemPerPage,currentPage]);
+  
+    useEffect(() => {
+    const fetchProductscount = async () => {
+      try {
+        const response = await axios.get(`http://localhost:5000/products/count`);
+        setProductCount(response?.data?.count);
+      } catch (error) {
+        console.error("Error fetching products:", error);
+      }
+    };
+
+    fetchProductscount();
   }, []);
+  
+  
+  
+  
+  const handlePreviousPage = () => {
+    setCurrentPage((prevPage) => Math.max(prevPage - 1, 0));
+  };
+
+  const handleNextPage = () => {
+    setCurrentPage((prevPage) => Math.min(prevPage + 1, Math.ceil(productCount/ itemPerPage) - 1));
+  };
+
+  const numPages = Math.ceil(productCount / itemPerPage);
 
   return (
     <div className="container mx-auto min-h-(100vh-73.5px) my-16">
@@ -15,7 +58,31 @@ const Products = () => {
       <div className="grid grid-cols-4 gap-4 ">
         {/* Left fixed section */}
         <div className="col-span-1 min-h-(100vh-73.5px) sticky top-[73.5px]">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis veniam libero cumque exercitationem blanditiis repellat necessitatibus ullam tempore quae nulla, iste pariatur cupiditate? Assumenda ut laudantium magnam excepturi blanditiis exercitationem ducimus beatae quisquam animi incidunt! Veniam dignissimos quisquam, eveniet assumenda, excepturi nulla corporis est qqui labore dolorem maxime odit consequuntur. Animi eaque voluptas laborum in quisquam voluptate veritatis?
+      <div className=' flex justify-between items-center '>
+      <div>
+      <select className="px-4 py-2 rounded-md border w-full  rounded-r-none border-gray-300 focus:outline-none focus:border-blue-500">
+            <option value="tshirt">Brand Name</option>
+            <option value="pant">Pant</option>
+            <option value="suit">Suit</option>
+          </select>
+      </div>
+      <div>
+      <select className="px-4 py-2 rounded-md border  rounded-r-none border-gray-300 focus:outline-none focus:border-blue-500">
+            <option value="tshirt">Categori name</option>
+            <option value="tshirt">T-shirt</option>
+            <option value="pant">Pant</option>
+            <option value="suit">Suit</option>
+          </select>
+      </div>
+      </div>
+      <div>
+      <select className="px-4 py-2 rounded-md border  rounded-r-none border-gray-300 focus:outline-none focus:border-blue-500">
+            <option value="tshirt">Product price</option>
+            <option value="tshirt">T-shirt</option>
+            <option value="pant">Pant</option>
+            <option value="suit">Suit</option>
+          </select>
+      </div>
         </div>
         {/* Right scrollable product section with hidden scrollbar */}
         <div className="col-span-3 min-h-(100vh-73.5px)  overflow-y-auto hide-scrollbar">
@@ -40,6 +107,31 @@ const Products = () => {
               </div>
             ))}
           </div>
+          <div className="flex justify-center mt-8">
+          <button
+            onClick={handlePreviousPage}
+            disabled={currentPage === 0}
+            className="btn btn-outline btn-circle"
+          >
+            <GrLinkPrevious size={20} className="inline-block mr-2" />
+          </button>
+          {Array.from({ length: numPages }, (_, i) => (
+            <button
+              key={i}
+              onClick={() => setCurrentPage(i)}
+              className={`mx-2 text-2xl ${currentPage === i ? "underline" : ""}`}
+            >
+              {i + 1}
+            </button>
+          ))}
+          <button
+            onClick={handleNextPage}
+            disabled={currentPage === numPages - 1}
+            className="btn btn-outline btn-circle"
+          >
+            <GrLinkNext size={20} className="inline-block ml-2" />
+          </button>
+        </div>
         </div>
       </div>
     </div>

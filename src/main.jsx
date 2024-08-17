@@ -7,6 +7,7 @@ import Login from "./pages/Login/Login.jsx";
 import Home from "./pages/Home/Home.jsx";
 import Signup from "./pages/Registration/Signup.jsx";
 import AuthProvider from "./Firebase/AuthProvider.jsx";
+import Products from "./pages/Products/Products.jsx";
 
 const router = createBrowserRouter([
   {
@@ -16,6 +17,10 @@ const router = createBrowserRouter([
       {
       index:true,
       element: <Home/>,
+       },
+      {
+      path:"/products",
+      element: <Products/>,
        },
       
     ],
