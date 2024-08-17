@@ -8,11 +8,13 @@ import Home from "./pages/Home/Home.jsx";
 import Signup from "./pages/Registration/Signup.jsx";
 import AuthProvider from "./Firebase/AuthProvider.jsx";
 import Products from "./pages/Products/Products.jsx";
+import Errorpage from "./pages/Errorpage.jsx";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Root />,
+    errorElement:<Errorpage></Errorpage>,
     children: [
       {
       index:true,
