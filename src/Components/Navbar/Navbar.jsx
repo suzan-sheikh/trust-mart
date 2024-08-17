@@ -5,24 +5,19 @@ import { authContex } from "../../Firebase/AuthProvider";
 function Navbar() {
   const { user, logout } = useContext(authContex);
   const navigate = useNavigate();
-  const [searchTerm,setSearchTerm] = useState('')
-    console.log(searchTerm);
-   useEffect(()=>{
-      navigate(`/products?search=${searchTerm}`);
-    
-   },[searchTerm])
+  const [searchTerm, setSearchTerm] = useState("");
+  console.log(searchTerm);
+  useEffect(() => {
+    navigate(`/products?search=${searchTerm}`);
+  }, [searchTerm]);
 
   return (
-    <nav className="bg-gray-800 p-4  w-full top-0 mb-16">
+    <nav className="bg-gray-800 p-4  w-full top-0 ">
       <div className="container mx-auto flex justify-between items-center">
         {/* Logo/Brand Name */}
         <div className="text-white text-lg font-bold">
           <Link to="/">
-            <img
-              className="w-16 rounded-lg h-10"
-              src="/src/assets/3.png"
-              alt="Logo"
-            />
+            <img className="w-16 rounded-lg h-10" src="/3.png" alt="Logo" />
           </Link>
         </div>
 
@@ -35,7 +30,7 @@ function Navbar() {
           </select>
           <input
             type="text"
-            onChange={(e)=>setSearchTerm(e.target.value)}
+            onChange={(e) => setSearchTerm(e.target.value)}
             placeholder="Search for products..."
             className="w-full border-l-0 rounded-l-none px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:border-blue-500"
           />

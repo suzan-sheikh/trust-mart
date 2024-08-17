@@ -4,7 +4,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { authContex } from "../../Firebase/AuthProvider";
 
 const Login = () => {
-  const { SignInWithPassword } = useContext(authContex);
+  const { SignInWithPassword,googleSignIn } = useContext(authContex);
   const navigate = useNavigate();
   const location = useLocation();
   const pathform = location?.state || "/";
@@ -24,6 +24,18 @@ const Login = () => {
       .catch(error => {
         setError('Error signing in. Please check your email and password.');
         console.error('Error signing in', error);
+      });
+  };
+  const handleGoogleSignin = () => {
+    googleSignIn()
+    .then(result=>{
+      if (result.user) {
+       alert("Sign In sucsessfully");
+        navigate(pathform);
+      }
+      })
+      .catch((error) => {
+        alert(error.message.slice(10));
       });
   };
 
@@ -83,6 +95,7 @@ const Login = () => {
       <div className="flex items-center mt-6 -mx-2">
         <button
           type="button"
+          onClick={()=>handleGoogleSignin()}
           className="flex items-center justify-center w-full px-6 py-2 mx-2 text-sm font-medium text-white bg-blue-500 rounded-lg hover:bg-blue-400 focus:bg-blue-400 focus:outline-none"
         >
           <FaGoogle className="w-4 h-4 mx-2" />
