@@ -1,23 +1,19 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { authContex } from "../../Firebase/AuthProvider";
 
 function Navbar() {
   const { user, logout } = useContext(authContex);
   const navigate = useNavigate();
-  const [searchTerm, setSearchTerm] = useState('');
-
-  const handleSearch = (e) => {
-    const searchTerm = e.target.value;
-    setSearchTerm(searchTerm);
-    if (searchTerm) {
-      // Navigate to the products page with the search term as a query parameter
+  const [searchTerm,setSearchTerm] = useState('')
+    console.log(searchTerm);
+   useEffect(()=>{
       navigate(`/products?search=${searchTerm}`);
-    }
-  };
+    
+   },[searchTerm])
 
   return (
-    <nav className="bg-gray-800 p-4 sticky z-50 w-full top-0">
+    <nav className="bg-gray-800 p-4  w-full top-0 mb-16">
       <div className="container mx-auto flex justify-between items-center">
         {/* Logo/Brand Name */}
         <div className="text-white text-lg font-bold">
@@ -39,8 +35,7 @@ function Navbar() {
           </select>
           <input
             type="text"
-            value={searchTerm}
-            onChange={handleSearch}
+            onChange={(e)=>setSearchTerm(e.target.value)}
             placeholder="Search for products..."
             className="w-full border-l-0 rounded-l-none px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:border-blue-500"
           />

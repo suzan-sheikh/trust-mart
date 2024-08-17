@@ -4,7 +4,7 @@ import Navbar from "../Components/Navbar/Navbar";
 
 const Root = () => {
   return (
-    <div className="">
+    <div className="min-h-screen">
     <Navbar></Navbar>
     <Outlet/>
     </div>
