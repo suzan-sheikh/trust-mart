@@ -17,7 +17,7 @@ Make sure you have the following installed on your machine:
 
 ```bash
 git clone https://github.com/suzan-sheikh/trust-mart
-cd scic-task-client
+cd trust-mart 
 ```
 
 **Installation**
