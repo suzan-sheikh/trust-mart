@@ -1,5 +1,6 @@
 import { FaReddit, FaFacebookF, FaGithub } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
+import logo from "../../assets/logo.png"
 
 const Footer = () => {
   return (
@@ -62,7 +63,7 @@ const Footer = () => {
           <Link to="/">
             <img
               className="w-16 rounded-sm h-10"
-              src="/src/assets/logo.png"
+              src={logo}
               alt="Logo"
             />
           </Link>
